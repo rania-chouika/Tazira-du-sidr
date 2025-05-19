@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Nos Produits - Tazira</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Quicksand&display=swap" rel="stylesheet">
+  <!-- FontAwesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Style principal -->
+  <link rel="stylesheet" href="panier.css">
+  <style>
+    body {
+      background: linear-gradient(120deg, #e2dbc2 60%, #e5c335 100%);
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #7c9452;
+      padding: 0.5rem 2.5rem 0.5rem 1.2rem;
+      box-shadow: 0 2px 12px #0001;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo-box {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 4px 24px;
+      display: flex;
+      align-items: center;
+      margin-right: 2.5rem;
+    }
+    .logo-img {
+      height: 60px;
+      width: auto;
+      display: block;
+      transition: transform 0.2s;
+    }
+    .logo-img:hover {
+      transform: scale(1.07) rotate(-3deg);
+    }
+    .nav-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.7rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 0.5rem 0.7rem;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.18s;
+      position: relative;
+      display: inline-block;
+    }
+    .nav-links li a:hover {
+      color: #e5c335;
+      background: #fff2;
+      transform: translateY(-2px) scale(1.07);
+      box-shadow: 0 2px 8px #e5c33544;
+    }
+    .nav-links li a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 3px;
+      background: #e5c335;
+      border-radius: 2px;
+      transition: width 0.3s;
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+    }
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+    .icons {
+      display: flex;
+      align-items: center;
+      gap: 1.7rem;
+      margin-left: 2.5rem;
+    }
+    .icons a {
+      color: #fff;
+      font-size: 1.4rem;
+      text-decoration: none;
+      transition: color 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .icons a:hover {
+      color: #e5c335;
+      transform: scale(1.15) translateY(-2px);
+    }
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+      }
+      .logo-box {
+        margin-bottom: 1rem;
+      }
+      .nav-center {
+        width: 100%;
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+      .icons {
+        margin: 1rem 0 0 0;
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+    .produit-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 18px #e5c33533, 0 2px 8px #0001;
+      padding: 1.5rem 1.2rem 1.7rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      transition: box-shadow 0.25s, transform 0.22s;
+      margin-bottom: 1.5rem;
+      min-width: 260px;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .produit-card:hover {
+      box-shadow: 0 8px 32px #e5c33566, 0 4px 16px #0002;
+      transform: translateY(-4px) scale(1.03);
+    }
+    .produit-3d-frame {
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(135deg, #f8f7e6 70%, #fffbe6 100%);
+      border-radius: 14px;
+      box-shadow: 0 2px 10px #e5c33533, 0 1px 4px #0001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.1rem;
+      overflow: hidden;
+      transition: box-shadow 0.22s, transform 0.22s;
+    }
+    .produit-3d-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      background: #f6f6f6;
+      object-fit: contain;
+      display: block;
+    }
+    .produit-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
+    .btn-voir-produit {
+      display: inline-block;
+      margin-top: 1.1rem;
+      background: #7c9452;
+      color: #fff;
+      font-size: 1.08rem;
+      font-weight: 700;
+      padding: 0.65rem 1.7rem;
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 2px 8px #e5c33533;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+    }
+    .btn-voir-produit:hover {
+      background: #e5c335;
+      color: #7c9452;
+      box-shadow: 0 4px 18px #e5c33555;
+      transform: scale(1.07);
+    }
+    .titre-magique {
+      text-align: center;
+      font-size: 2.2rem;
+      font-family: 'Playfair Display', serif;
+      color: #7c9452;
+      margin-top: 2.2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: block;
+    }
+    .etoile-top-magique {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 2.2rem;
+      margin-bottom: -1.2rem;
+    }
+    .etoile-magique {
+      display: block;
+      font-size: 5.5rem;
+      color: #e5c335;
+      line-height: 1;
+      filter: drop-shadow(0 2px 8px #e5c33588);
+      animation: etoile-brille 1.7s infinite alternate cubic-bezier(.7,0,.3,1);
+      user-select: none;
+      pointer-events: none;
+      text-align: center;
+      margin: 0;
+    }
+    @keyframes etoile-brille {
+      0% { filter: drop-shadow(0 2px 8px #e5c33588) brightness(1); transform: scale(1) rotate(-8deg); }
+      100% { filter: drop-shadow(0 6px 18px #e5c335cc) brightness(1.25); transform: scale(1.13) rotate(8deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Barre de navigation -->
+  <header>
+    <div class="navbar">
+      <div class="logo-box">
+        <img src="logo-tazira.png" alt="Tazira" class="logo-img">
+      </div>
+      <div class="nav-center">
+        <ul class="nav-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="produits.html">Nos Produits</a></li>
+          <li><a href="notre-histoire.html">Notre Histoire</a></li>
+          <li><a href="rituels.html">Rituels & Conseils</a></li>
+        </ul>
+      </div>
+      <div class="icons">
+        <a href="compte.html" title="Compte"><i class="fas fa-user"></i></a>
+        <a href="panier.html" title="Panier"><i class="fas fa-shopping-cart"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section produits -->
+  <main>
+    <div class="etoile-top-magique">
+      <span class="etoile-magique">&#10024;</span>
+    </div>
+    <div class="titre-magique">
+      Nos produits magiques
+    </div>
+    
+    <div class="produits-grid">
+      <div class="produit-card">
+        <div class="produit-3d-frame">
+          <iframe title="Shampoing purifiant au sidr" allowfullscreen src="https://www.pacdora.com/share?filter_url=psbs85eu1e"></iframe>
+        </div>
+        <div class="produit-info">
+          <h2 class="produit-titre-magique">Shampoing purifiant au sidr</h2>
+          <p class="produit-prix-magique">85 MAD</p>
+          <p class="produit-description-magique">Nettoie en douceur et purifie le cuir chevelu avec les bienfaits naturels du sidr.</p>
+          <a href="produits/shampoing.html" class="btn-voir-produit">Voir le produit</a>
+        </div>
+      </div>
+      <div class="produit-card">
+        <div class="produit-3d-frame">
+          <iframe title="Après-shampoing démêlant" allowfullscreen src="https://www.pacdora.com/share?filter_url=ps1r4bnlkl"></iframe>
+        </div>
+        <div class="produit-info">
+          <h2 class="produit-titre-magique">Après-shampoing démêlant</h2>
+          <p class="produit-prix-magique">75 MAD</p>
+          <p class="produit-description-magique">Facilite le démêlage sans alourdir les cheveux, pour une chevelure douce et soyeuse.</p>
+          <a href="produits/apres-shampoing.html" class="btn-voir-produit">Voir le produit</a>
+        </div>
+      </div>
+      <div class="produit-card">
+        <div class="produit-3d-frame">
+          <iframe title="Masque nourrissant au sidr" allowfullscreen src="https://www.pacdora.com/share?filter_url=ps22r3lhj9"></iframe>
+        </div>
+        <div class="produit-info">
+          <h2 class="produit-titre-magique">Masque nourrissant au sidr</h2>
+          <p class="produit-prix-magique">95 MAD</p>
+          <p class="produit-description-magique">Nourrit intensément et répare les cheveux secs pour une chevelure revitalisée.</p>
+          <a href="produits/masque.html" class="btn-voir-produit">Voir le produit</a>
+        </div>
+      </div>
+      <div class="produit-card">
+        <div class="produit-3d-frame">
+          <iframe title="Crème coiffante protectrice" allowfullscreen src="https://www.pacdora.com/share?filter_url=psfbro984d"></iframe>
+        </div>
+        <div class="produit-info">
+          <h2 class="produit-titre-magique">Crème coiffante protectrice</h2>
+          <p class="produit-prix-magique">80 MAD</p>
+          <p class="produit-description-magique">Hydrate, définit et protège la fibre capillaire pour un style parfait.</p>
+          <a href="produits/creme.html" class="btn-voir-produit">Voir le produit</a>
+        </div>
+      </div>
+      <div class="produit-card">
+        <div class="produit-3d-frame">
+          <iframe title="Sérum réparateur (pointes)" allowfullscreen src="https://www.pacdora.com/share?filter_url=psygli2a2c"></iframe>
+        </div>
+        <div class="produit-info">
+          <h2 class="produit-titre-magique">Sérum réparateur (pointes)</h2>
+          <p class="produit-prix-magique">90 MAD</p>
+          <p class="produit-description-magique">Protège les pointes, apporte brillance et réparation pour des cheveux en pleine santé.</p>
+          <a href="produits/serum.html" class="btn-voir-produit">Voir le produit</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Script principal -->
+  <script src="sounds.js"></script>
+  <script src="panier.js"></script>
+</body>
+</html> 

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Paiement - Tazira</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(120deg, #f6eec2 0%, #e5c335 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Quicksand', Arial, sans-serif;
+    }
+    .payment-container {
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 8px 32px #e5c33544, 0 2px 8px #0001;
+      padding: 38px 38px 32px 38px;
+      max-width: 480px;
+      width: 98vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: floatGlow 3.5s ease-in-out infinite alternate;
+      position: relative;
+    }
+    @keyframes floatGlow {
+      0% { box-shadow: 0 8px 32px #e5c33544, 0 2px 8px #0001; transform: translateY(0); }
+      100% { box-shadow: 0 16px 48px #e5c33577, 0 4px 16px #b6cfa555; transform: translateY(-8px) scale(1.012); }
+    }
+    h1 {
+      font-size: 1.35rem;
+      color: #7c9452;
+      margin-bottom: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      align-items: center;
+      transition: opacity 0.7s cubic-bezier(.7,0,.3,1);
+    }
+    .input-group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.7rem;
+      width: 75%;
+      min-width: 220px;
+      max-width: 320px;
+      background: #fffbe6;
+      border-radius: 14px;
+      border: 2px solid #e5c33522;
+      box-shadow: 0 1.5px 6px #e5c33511;
+      padding: 0.1rem 0.7rem 0.1rem 0.7rem;
+      position: relative;
+      transition: box-shadow 0.22s, border 0.22s, background 0.22s;
+    }
+    .input-group:focus-within {
+      border-color: #e5c335;
+      box-shadow: 0 0 0 4px #e5c33533, 0 1.5px 6px #e5c33522;
+      background: #fffde6;
+    }
+    .input-group i {
+      color: #b6cfa5;
+      font-size: 1.1rem;
+      min-width: 22px;
+      transition: color 0.2s;
+    }
+    .input-group:focus-within i {
+      color: #e5c335;
+    }
+    label {
+      display: none;
+    }
+    input, select {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1.01rem;
+      font-family: inherit;
+      width: 100%;
+      padding: 0.7rem 0.2rem;
+      color: #3b4d23;
+      transition: background 0.18s, color 0.18s;
+    }
+    input::placeholder {
+      color: #b6cfa5bb;
+      font-size: 0.98rem;
+      letter-spacing: 0.5px;
+    }
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      color: #3b4d23;
+      background: transparent;
+      font-size: 1.01rem;
+      padding-right: 1.5rem;
+    }
+    .input-group select {
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%237c9452" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 0.2rem center;
+      background-size: 1.1em;
+    }
+    .card-fields {
+      display: none;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 0.5rem;
+      width: 75%;
+      min-width: 220px;
+      max-width: 320px;
+      animation: cardAppear 0.7s cubic-bezier(.7,0,.3,1);
+      align-self: center;
+    }
+    .card-fields.show {
+      display: flex;
+      animation: cardAppear 0.7s cubic-bezier(.7,0,.3,1);
+    }
+    @keyframes cardAppear {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pay-btn {
+      margin-top: 0.7rem;
+      background: linear-gradient(90deg, #e5c335 60%, #7c9452 100%);
+      border: none;
+      color: white;
+      padding: 1rem 0;
+      width: 75%;
+      min-width: 220px;
+      max-width: 320px;
+      font-size: 1.13rem;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #e5c33533, 0 0 16px #e5c33522;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7em;
+      position: relative;
+      overflow: hidden;
+      animation: btnPulse 1.2s infinite alternate, fadeIn 1.1s 0.5s both;
+    }
+    @keyframes btnPulse {
+      0% { box-shadow: 0 2px 8px #e5c33522, 0 0 0 #e5c33500; }
+      100% { box-shadow: 0 6px 18px #e5c33544, 0 0 8px #e5c33533; }
+    }
+    .pay-btn .fa-credit-card {
+      animation: cardWiggle 1.2s infinite alternate;
+      font-size: 1.25em;
+      color: #fffbe6;
+      margin-left: 0.2em;
+    }
+    @keyframes cardWiggle {
+      0% { transform: rotate(-7deg) scale(1); }
+      100% { transform: rotate(7deg) scale(1.08); }
+    }
+    .pay-btn:hover {
+      background: linear-gradient(90deg, #7c9452 60%, #e5c335 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px #e5c33599, 0 0 24px #e5c33544;
+      transform: scale(1.04);
+    }
+    /* Confirmation animation styles */
+    .confirmation-zone {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: fadeInConfirm 1.2s cubic-bezier(.7,0,.3,1);
+      min-height: 340px;
+      width: 100%;
+      margin-top: 0.5em;
+    }
+    @keyframes fadeInConfirm {
+      from { opacity: 0; transform: translateY(40px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .confirmation-zone .lottie-wrap {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 0.5em auto;
+      background: radial-gradient(circle at 60% 20%, #fffbe6cc 0%, #e5c33533 60%, transparent 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 32px #e5c33533, 0 2px 8px #b6cfa522;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: floatGlow 3.5s ease-in-out infinite alternate;
+    }
+    .confirmation-zone .magic-stars {
+      position: absolute;
+      top: 10px; right: 18px;
+      font-size: 2.1em;
+      color: #e5c335;
+      animation: twinkle 1.5s infinite alternate;
+      pointer-events: none;
+      z-index: 2;
+    }
+    @keyframes twinkle {
+      0% { opacity: 0.7; transform: scale(1) rotate(-8deg); }
+      100% { opacity: 1; transform: scale(1.15) rotate(8deg); }
+    }
+    .confirmation-zone .main-text {
+      font-size: 1.25em;
+      color: #7c9452;
+      font-weight: 700;
+      margin-top: 0.7em;
+      margin-bottom: 0.2em;
+      text-align: center;
+      letter-spacing: 1px;
+      animation: textPop 1.1s cubic-bezier(.7,0,.3,1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+    }
+    .confirmation-zone .main-text .fa-truck {
+      color: #e5c335;
+      font-size: 1.2em;
+      animation: truckMove 1.2s infinite alternate;
+    }
+    @keyframes truckMove {
+      0% { transform: translateX(-3px); }
+      100% { transform: translateX(6px); }
+    }
+    @keyframes textPop {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .confirmation-zone .sub-text {
+      font-size: 1.08em;
+      color: #3b4d23;
+      margin-top: 0.7em;
+      text-align: center;
+      animation: fadeInSub 1.2s 1.2s both;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4em;
+    }
+    @keyframes fadeInSub {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .confirmation-zone .sub-text .fa-envelope {
+      color: #e5c335;
+      font-size: 1.1em;
+      animation: envelopePop 1.2s infinite alternate;
+    }
+    @keyframes envelopePop {
+      0% { transform: scale(1) rotate(-5deg); }
+      100% { transform: scale(1.13) rotate(5deg); }
+    }
+    .confirmation-zone .emoji {
+      font-size: 2.2em;
+      margin-bottom: 0.2em;
+      animation: emojiBounce 1.2s infinite alternate;
+    }
+    @keyframes emojiBounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px) scale(1.08); }
+    }
+    @media (max-width: 700px) {
+      .payment-container {
+        padding: 12px 2vw 12px 2vw;
+        max-width: 99vw;
+      }
+      h1 { font-size: 1.05rem; }
+      .input-group, .card-fields, .pay-btn {
+        min-width: 0;
+        max-width: 99vw;
+        width: 98vw;
+      }
+      .confirmation-zone .lottie-wrap {
+        width: 140px; height: 140px;
+      }
+    }
+    .order-box {
+      background: #fffbe6;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #e5c33533, 0 2px 8px #b6cfa522;
+      padding: 1.3em 2.2em;
+      margin: 0 auto 1.2em auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      max-width: 340px;
+      font-size: 1.25em;
+      color: #7c9452;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+      animation: rotatePop 1.1s cubic-bezier(.7,0,.3,1);
+    }
+    @keyframes rotatePop {
+      0% { opacity: 0; transform: scale(0.7) rotate(-12deg); }
+      60% { opacity: 1; transform: scale(1.08) rotate(6deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+    .order-text {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 1.1em;
+      color: #7c9452;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #e5c33522;
+    }
+    .merci-text {
+      font-family: 'Pacifico', 'Dancing Script', cursive, 'Quicksand', Arial, sans-serif;
+      font-size: 2.1em;
+      color: #e5c335;
+      margin: 0.7em 0 0.2em 0;
+      text-align: center;
+      letter-spacing: 2px;
+      animation: merciPop 1.2s 0.7s both cubic-bezier(.7,0,.3,1);
+    }
+    @keyframes merciPop {
+      from { opacity: 0; transform: scale(0.7) rotate(-8deg); }
+      to { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.1em auto 0 auto;
+      font-size: 1.7em;
+      color: #7c9452;
+      background: #fffbe6;
+      border-radius: 50%;
+      width: 2.1em;
+      height: 2.1em;
+      box-shadow: 0 2px 8px #e5c33522;
+      transition: background 0.18s, color 0.18s, transform 0.18s;
+      animation: homeAppear 1.2s 1.2s both cubic-bezier(.7,0,.3,1);
+    }
+    .home-link:hover {
+      background: #e5c335;
+      color: #fff;
+      transform: rotate(-12deg) scale(1.13);
+      box-shadow: 0 4px 18px #e5c33577;
+    }
+    @keyframes homeAppear {
+      from { opacity: 0; transform: scale(0.7) rotate(12deg); }
+      to { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+    .delivery-confirm-box {
+      background: #fffbe6;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #e5c33533, 0 2px 8px #b6cfa522;
+      padding: 2em 2.2em 1.5em 2.2em;
+      margin: 0 auto 1.2em auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      max-width: 340px;
+      animation: rotatePop 1.1s cubic-bezier(.7,0,.3,1);
+    }
+    .delivery-icon {
+      font-size: 2.7em;
+      color: #e5c335;
+      margin-bottom: 0.3em;
+      animation: truckMove 1.2s infinite alternate;
+    }
+    @keyframes truckMove {
+      0% { transform: translateX(-6px) scale(1.05); }
+      100% { transform: translateX(6px) scale(1.13); }
+    }
+    .delivery-main-text {
+      font-size: 1.25em;
+      color: #7c9452;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 0.7em;
+      animation: textPop 1.1s cubic-bezier(.7,0,.3,1);
+    }
+    .delivery-sub-text {
+      font-size: 1.08em;
+      color: #3b4d23;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      animation: fadeInSub 1.2s 0.7s both;
+    }
+    .delivery-sub-text .fa-envelope {
+      color: #e5c335;
+      font-size: 1.1em;
+      animation: iconPop 1.2s infinite alternate;
+    }
+    @keyframes iconPop {
+      0% { transform: scale(1) rotate(-8deg); opacity: 0.7; }
+      100% { transform: scale(1.18) rotate(8deg); opacity: 1; }
+    }
+    .merci-italique-zone {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.7em;
+      min-height: 2.5em;
+    }
+    .merci-italique {
+      font-family: 'Pacifico', 'Dancing Script', cursive, 'Quicksand', Arial, sans-serif;
+      font-size: 2.3em;
+      color: #e5c335;
+      font-style: italic;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-align: center;
+      z-index: 2;
+      animation: merciPop 1.2s cubic-bezier(.7,0,.3,1);
+      display: inline-block;
+    }
+    .heart-float {
+      position: absolute;
+      font-size: 1.3em;
+      opacity: 0.85;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .heart1 {
+      left: 10%;
+      top: -0.2em;
+      animation: heartFloat1 2.2s infinite alternate;
+    }
+    .heart2 {
+      left: 50%;
+      top: -1.1em;
+      animation: heartFloat2 2.5s infinite alternate;
+    }
+    .heart3 {
+      right: 10%;
+      top: 0.1em;
+      animation: heartFloat3 2.1s infinite alternate;
+    }
+    @keyframes heartFloat1 {
+      0% { transform: translateY(0) rotate(-10deg) scale(1); opacity: 0.7; }
+      100% { transform: translateY(-18px) rotate(18deg) scale(1.18); opacity: 1; }
+    }
+    @keyframes heartFloat2 {
+      0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.7; }
+      100% { transform: translateY(-22px) rotate(-18deg) scale(1.22); opacity: 1; }
+    }
+    @keyframes heartFloat3 {
+      0% { transform: translateY(0) rotate(10deg) scale(1); opacity: 0.7; }
+      100% { transform: translateY(-15px) rotate(-18deg) scale(1.15); opacity: 1; }
+    }
+    .delivery-message-bientot {
+      margin-top: 1.1em;
+      font-size: 1.08em;
+      color: #7c9452;
+      text-align: center;
+      animation: fadeInSub 1.2s 1.1s both;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+    }
+    .delivery-message-bientot .fa-envelope {
+      color: #e5c335;
+      font-size: 1.1em;
+      animation: iconPop 1.2s infinite alternate;
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <form id="paymentForm">
+      <div class="input-group">
+        <i class="fa fa-user"></i>
+        <input type="text" id="fullName" name="fullName" placeholder="Nom complet" required />
+      </div>
+      <div class="input-group">
+        <i class="fa fa-city"></i>
+        <input type="text" id="city" name="city" placeholder="Ville" required />
+      </div>
+      <div class="input-group">
+        <i class="fa fa-location-dot"></i>
+        <input type="text" id="region" name="region" placeholder="Région" required />
+      </div>
+      <div class="input-group">
+        <i class="fa fa-phone"></i>
+        <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" pattern="[0-9\s\+]{6,20}" required />
+      </div>
+      <div class="input-group">
+        <i class="fa fa-money-bill-wave"></i>
+        <select id="paymentMethod" name="paymentMethod" required>
+          <option value="">-- Choisir un mode --</option>
+          <option value="espece">Espèces</option>
+          <option value="carte">Carte bancaire</option>
+        </select>
+      </div>
+      <div class="card-fields" id="cardFields">
+        <div class="input-group">
+          <i class="fa fa-credit-card"></i>
+          <input type="text" id="cardNumber" name="cardNumber" placeholder="Numéro de carte" pattern="[0-9\s]{13,19}" />
+        </div>
+        <div class="input-group">
+          <i class="fa fa-calendar"></i>
+          <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/AA" pattern="(0[1-9]|1[0-2])\/([0-9]{2})" />
+        </div>
+        <div class="input-group">
+          <i class="fa fa-lock"></i>
+          <input type="password" id="cvv" name="cvv" placeholder="CVV" pattern="[0-9]{3,4}" />
+        </div>
+        <div class="input-group">
+          <i class="fa fa-user"></i>
+          <input type="text" id="cardName" name="cardName" placeholder="Nom sur la carte" />
+        </div>
+      </div>
+      <button type="submit" class="pay-btn">
+        <span>Payer</span>
+        <i class="fa fa-credit-card"></i>
+      </button>
+    </form>
+    <div class="confirmation-zone" id="confirmationZone" style="display:none; flex-direction:column; align-items:center; justify-content:center; min-height:200px; width:100%; margin-top:0.5em;">
+      <div class="merci-italique-zone">
+        <span class="merci-italique">Merci</span>
+        <span class="heart-float heart1">❤️</span>
+        <span class="heart-float heart2">💖</span>
+        <span class="heart-float heart3">💗</span>
+      </div>
+      <div class="delivery-confirm-box">
+        <div class="delivery-icon"><i class="fa fa-truck"></i></div>
+        <div class="delivery-main-text">Votre commande est en route !</div>
+      </div>
+      <div class="delivery-message-bientot">
+        <i class="fa fa-envelope"></i> Vous recevrez une confirmation par message bientôt.
+      </div>
+      <a href="index.html" class="home-link" title="Retour à l'accueil">
+        <i class="fa fa-home"></i>
+      </a>
+    </div>
+  </div>
+  <script>
+    const paymentMethod = document.getElementById('paymentMethod');
+    const cardFields = document.getElementById('cardFields');
+    paymentMethod.addEventListener('change', function() {
+      if (this.value === 'carte') {
+        cardFields.classList.add('show');
+        cardFields.querySelectorAll('input').forEach(input => input.required = true);
+      } else {
+        cardFields.classList.remove('show');
+        cardFields.querySelectorAll('input').forEach(input => {
+          input.required = false;
+          input.value = '';
+        });
+      }
+    });
+    // Confirmation animation
+    const paymentForm = document.getElementById('paymentForm');
+    const confirmationZone = document.getElementById('confirmationZone');
+    paymentForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      paymentForm.style.opacity = 0;
+      setTimeout(() => {
+        paymentForm.style.display = 'none';
+        confirmationZone.style.display = 'flex';
+      }, 700);
+    });
+  </script>
+</body>
+</html> 

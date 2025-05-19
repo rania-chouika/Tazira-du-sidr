@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notre Histoire - Tazira</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+  <style>
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #7c9452;
+      padding: 0.5rem 2.5rem 0.5rem 1.2rem;
+      box-shadow: 0 2px 12px #0001;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo-box {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 4px 24px;
+      display: flex;
+      align-items: center;
+      margin-right: 2.5rem;
+    }
+    .logo-img {
+      height: 60px;
+      width: auto;
+      display: block;
+      transition: transform 0.2s;
+    }
+    .logo-img:hover {
+      transform: scale(1.07) rotate(-3deg);
+    }
+    .nav-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.7rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 0.5rem 0.7rem;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.18s;
+      position: relative;
+      display: inline-block;
+    }
+    .nav-links li a:hover {
+      color: #e5c335;
+      background: #fff2;
+      transform: translateY(-2px) scale(1.07);
+      box-shadow: 0 2px 8px #e5c33544;
+    }
+    .nav-links li a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 3px;
+      background: #e5c335;
+      border-radius: 2px;
+      transition: width 0.3s;
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+    }
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+    .icons {
+      display: flex;
+      align-items: center;
+      gap: 1.7rem;
+      margin-left: 2.5rem;
+    }
+    .icons a {
+      color: #fff;
+      font-size: 1.4rem;
+      text-decoration: none;
+      transition: color 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .icons a:hover {
+      color: #e5c335;
+      transform: scale(1.15) translateY(-2px);
+    }
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+      }
+      .logo-box {
+        margin-bottom: 1rem;
+      }
+      .nav-center {
+        width: 100%;
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+      .icons {
+        margin: 1rem 0 0 0;
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo-box">
+        <img src="logo-tazira.png" alt="Tazira" class="logo-img">
+      </div>
+      <div class="nav-center">
+        <ul class="nav-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="produits.html">Nos Produits</a></li>
+          <li><a href="notre-histoire.html">Notre Histoire</a></li>
+          <li><a href="rituels.html">Rituels & Conseils</a></li>
+        </ul>
+      </div>
+      <div class="icons">
+        <a href="compte.html" title="Compte"><i class="fas fa-user"></i></a>
+        <a href="panier.html" title="Panier"><i class="fas fa-shopping-cart"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Animation Lottie -->
+  <section style="text-align: center; padding: 40px 0; background-color: #f9f5f0;">
+    <h2 style="font-family: 'Georgia', serif; font-size: 28px; color: #5A4F3D;">
+      Un soin ancestral, un rituel de beauté
+    </h2>
+    <p style="font-size: 16px; color: #666; max-width: 600px; margin: 10px auto 30px;">
+      Chez Tazira, chaque geste est un hommage à la sagesse marocaine. Découvrez la magie du Sidr appliquée avec amour...
+    </p>
+    <lottie-player 
+      src="https://lottie.host/974235d3-7cb5-4e9c-87f8-ea0f8b1b34d3/fNw5TO9N3j.lottie"  
+      background="transparent"  
+      speed="1"  
+      style="width: 320px; height: 320px;"  
+      loop  
+      autoplay>
+    </lottie-player>
+  </section>
+
+  <!-- Section Histoire -->
+  <section class="histoire-section">
+    <h1>À l'origine de <span>Tazira</span></h1>
+    <p>
+      Tazira, c'est l'histoire d'un retour aux sources : puiser dans la sagesse des femmes marocaines et la force de la nature pour révéler la beauté authentique de chaque chevelure.
+    </p>
+    <p>
+      Face à la standardisation des soins, nous avons choisi l'authenticité : <span class="highlight">le sidr</span>, plante sacrée du désert, au cœur de nos rituels.
+    </p>
+    <p>
+      <span class="highlight">Notre mission :</span> Offrir à toutes et tous des soins capillaires naturels, sains et efficaces, inspirés des rituels ancestraux amazighs. Nous croyons en une beauté simple, respectueuse de la nature, de la santé et des traditions.
+    </p>
+    <p>
+      Inspirée par les secrets de beauté transmis de génération en génération, <span class="highlight">Tazira est la première marque marocaine</span> à proposer une gamme capillaire complète à base de sidr, 100 % naturelle, adaptée à tous les types de cheveux.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="mentions">
+        © 2024 Tazira - Tous droits réservés
+      </div>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html> 

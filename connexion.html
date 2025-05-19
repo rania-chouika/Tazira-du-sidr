@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connexion - Tazira</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(120deg, #f6eec2 0%, #e5c335 100%);
+      background-size: 300% 300%;
+      animation: gradientMove 12s ease-in-out infinite;
+      min-height: 100vh;
+      color: #2f4f4f;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      gap: 1.2em;
+      background: #7c9452;
+      padding: 0.7em 2em;
+      border-radius: 0 0 18px 18px;
+      margin-bottom: 2.2em;
+    }
+    .navbar-logo {
+      height: 38px;
+      margin-right: 2em;
+    }
+    .navbar a {
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1.08em;
+      margin: 0 0.7em;
+      transition: color 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .navbar a:hover {
+      color: #e5c335;
+    }
+    .nav-icons {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 1.1em;
+    }
+    .nav-icon {
+      color: #fff;
+      font-size: 1.35em;
+      margin-left: 0.7em;
+      transition: color 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .nav-icon:hover {
+      color: #e5c335;
+      transform: scale(1.18) rotate(-8deg);
+    }
+    .login-container {
+      max-width: 410px;
+      margin: 40px auto 0 auto;
+      background: #fffbe6ee;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px #e5c33544, 0 2px 8px #0001;
+      padding: 2.2em 2em 2.5em 2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeInUp 1s cubic-bezier(.7,0,.3,1);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .login-title {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: #7c9452;
+      margin-bottom: 1.2em;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    .social-btn {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.08em;
+      font-weight: 700;
+      padding: 0.9em 0;
+      margin-bottom: 0.7em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7em;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+      box-shadow: 0 2px 8px #e5c33522;
+    }
+    .btn-facebook {
+      background: #4267B2;
+      color: #fff;
+    }
+    .btn-facebook:hover {
+      background: #365899;
+      transform: scale(1.04);
+    }
+    .btn-google {
+      background: #fff;
+      color: #444;
+      border: 1.5px solid #e5c33555;
+    }
+    .btn-google:hover {
+      background: #f6eec2;
+      color: #e5c335;
+      transform: scale(1.04);
+    }
+    .or-separator {
+      width: 100%;
+      text-align: center;
+      color: #b6cfa5;
+      font-size: 1em;
+      margin: 0.7em 0 1em 0;
+      position: relative;
+    }
+    .or-separator:before, .or-separator:after {
+      content: '';
+      display: inline-block;
+      width: 35%;
+      height: 1px;
+      background: #e5c33544;
+      vertical-align: middle;
+      margin: 0 0.5em;
+    }
+    .login-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      margin-bottom: 1.2em;
+    }
+    .login-form label {
+      font-weight: 600;
+      color: #7c9452;
+      margin-bottom: 0.2em;
+      font-size: 1em;
+    }
+    .login-form input {
+      width: 100%;
+      padding: 0.8em 1em;
+      border: 2px solid #e5c33533;
+      border-radius: 10px;
+      font-size: 1.08em;
+      font-family: inherit;
+      background: #fff;
+      transition: border 0.2s, box-shadow 0.2s;
+      margin-bottom: 0.2em;
+      box-shadow: 0 2px 8px #e5c33511;
+    }
+    .login-form input:focus {
+      border-color: #e5c335;
+      box-shadow: 0 0 0 3px #e5c33533, 0 2px 8px #e5c33544;
+      outline: none;
+    }
+    .login-btn {
+      background: linear-gradient(90deg, #e5c335 60%, #7c9452 100%);
+      border: none;
+      color: white;
+      padding: 1em 0;
+      width: 100%;
+      font-size: 1.13em;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #e5c33533, 0 0 16px #e5c33522;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7em;
+      position: relative;
+      overflow: hidden;
+      animation: btnPulse 1.2s infinite alternate, fadeInUp 1.1s 0.5s both;
+    }
+    .login-btn:hover {
+      background: linear-gradient(90deg, #7c9452 60%, #e5c335 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px #e5c33599, 0 0 24px #e5c33544;
+      transform: scale(1.04) rotate(-2deg);
+    }
+    .forgot-link {
+      color: #7c9452;
+      font-size: 0.98em;
+      text-align: right;
+      margin-top: 0.2em;
+      margin-bottom: 1.2em;
+      text-decoration: underline dotted;
+      cursor: pointer;
+      transition: color 0.2s;
+      display: block;
+    }
+    .forgot-link:hover {
+      color: #e5c335;
+    }
+    .signup-block {
+      width: 100%;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #e5c33511;
+      padding: 1.2em 1em 1.5em 1em;
+      margin-top: 1.2em;
+      text-align: center;
+      animation: fadeInUp 1.1s 0.7s both cubic-bezier(.7,0,.3,1);
+    }
+    .signup-block-title {
+      color: #7c4a1e;
+      font-size: 1.18em;
+      font-weight: 700;
+      margin-bottom: 0.5em;
+      letter-spacing: 1px;
+    }
+    .signup-block-desc {
+      color: #2f4f4f;
+      font-size: 1em;
+      margin-bottom: 1.1em;
+    }
+    .signup-btn {
+      background: #7c9452;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.08em;
+      font-weight: 700;
+      padding: 0.9em 0;
+      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #e5c33522;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+      margin-top: 0.2em;
+    }
+    .signup-btn:hover {
+      background: #e5c335;
+      color: #fff;
+      transform: scale(1.04);
+    }
+    @media (max-width: 600px) {
+      .login-container {
+        padding: 1.2em 0.5em 1.5em 0.5em;
+        max-width: 99vw;
+      }
+      .signup-block {
+        padding: 1em 0.2em 1.2em 0.2em;
+      }
+    }
+    @keyframes envelopePop {
+      0% { transform: scale(1) rotate(-5deg); opacity: 0.7; }
+      100% { transform: scale(1.13) rotate(5deg); opacity: 1; }
+    }
+    .forgot-form input {
+      width: 100%;
+      padding: 0.8em 1em;
+      border: 2px solid #e5c33533;
+      border-radius: 10px;
+      font-size: 1.08em;
+      font-family: inherit;
+      background: #fff;
+      transition: border 0.2s, box-shadow 0.2s;
+      margin-bottom: 0.2em;
+      box-shadow: 0 2px 8px #e5c33511;
+    }
+    .forgot-form input:focus {
+      border-color: #e5c335;
+      box-shadow: 0 0 0 3px #e5c33533, 0 2px 8px #e5c33544;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <img src="../logo-tazira.png" alt="Tazira" class="navbar-logo" />
+    <a href="../index.html">Accueil</a>
+    <a href="../produits.html">Nos Produits</a>
+    <a href="../histoire.html">Notre Histoire</a>
+    <a href="../rituels.html">Rituels & Conseils</a>
+    <div class="nav-icons">
+      <a href="compte.html" class="nav-icon" title="Mon compte"><i class="fa fa-user"></i></a>
+      <a href="../panier.html" class="nav-icon" title="Panier"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+  </nav>
+  <div class="login-container">
+    <div class="login-title">Connexion</div>
+    <button class="social-btn btn-facebook"><i class="fab fa-facebook-f"></i> Se connecter avec Facebook</button>
+    <button class="social-btn btn-google"><i class="fab fa-google"></i> Se connecter avec Google</button>
+    <div class="or-separator">ou</div>
+    <form class="login-form" id="loginForm">
+      <label for="email">E-mail de contact</label>
+      <input type="email" id="email" placeholder="Votre e-mail" required />
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" placeholder="Votre mot de passe" required />
+      <button type="submit" class="login-btn">Login <i class="fa fa-arrow-right"></i></button>
+    </form>
+    <a href="#" class="forgot-link" id="forgotLink">Mot de passe oublié ?</a>
+    <form class="forgot-form" id="forgotForm" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:0.7em;margin-bottom:1em;">
+        <i class="fa fa-envelope fa-2x" style="color:#e5c335;animation:envelopePop 1.2s infinite alternate;"></i>
+        <span style="font-weight:600;color:#7c9452;font-size:1.1em;">Récupération du mot de passe</span>
+      </div>
+      <label for="forgotEmail">Votre e-mail</label>
+      <input type="email" id="forgotEmail" placeholder="Votre e-mail" required />
+      <button type="button" class="login-btn" id="sendCodeBtn">Envoyer le code <i class="fa fa-paper-plane"></i></button>
+      <div id="codeSection" style="display:none;margin-top:1.2em;">
+        <div style="display:flex;align-items:center;gap:0.5em;margin-bottom:0.7em;">
+          <i class="fa fa-key fa-lg" style="color:#7c9452;"></i>
+          <span style="color:#7c9452;font-weight:600;">Entrez le code reçu</span>
+        </div>
+        <input type="text" id="codeInput" maxlength="6" placeholder="Code à 6 chiffres" required style="text-align:center;letter-spacing:0.2em;" />
+        <button type="button" class="login-btn" id="validateCodeBtn">Valider <i class="fa fa-check"></i></button>
+        <div id="codeMsg" style="margin-top:0.7em;font-size:1em;color:#e57373;display:none;"></div>
+      </div>
+      <div id="successMsg" style="display:none;margin-top:1.2em;font-size:1.1em;color:#7c9452;font-weight:600;text-align:center;">
+        <i class="fa fa-smile-beam fa-lg" style="color:#e5c335;animation:envelopePop 1.2s infinite alternate;"></i>
+        Mot de passe réinitialisé avec succès !<br>Vous êtes maintenant connecté.
+      </div>
+    </form>
+    <div class="signup-block">
+      <div class="signup-block-title">Inscrivez-vous</div>
+      <div class="signup-block-desc">
+        Inscrivez-vous en 3 minutes pour bénéficier de plus d'avantages et offres privilégiées<br>
+        <b>(Réductions, produits de beauté gratuits, cadeaux, etc.)</b>
+      </div>
+      <a href="compte.html"><button class="signup-btn">Inscrivez-vous</button></a>
+    </div>
+  </div>
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const forgotLink = document.getElementById('forgotLink');
+    const forgotForm = document.getElementById('forgotForm');
+    const sendCodeBtn = document.getElementById('sendCodeBtn');
+    const codeSection = document.getElementById('codeSection');
+    const validateCodeBtn = document.getElementById('validateCodeBtn');
+    const codeInput = document.getElementById('codeInput');
+    const codeMsg = document.getElementById('codeMsg');
+    const successMsg = document.getElementById('successMsg');
+
+    forgotLink.onclick = function(e) {
+      e.preventDefault();
+      loginForm.style.display = 'none';
+      forgotForm.style.display = 'flex';
+      forgotForm.scrollIntoView({behavior:'smooth'});
+    };
+    sendCodeBtn.onclick = function() {
+      if(document.getElementById('forgotEmail').value.trim() === '') return;
+      sendCodeBtn.disabled = true;
+      sendCodeBtn.innerHTML = 'Envoi...';
+      setTimeout(() => {
+        sendCodeBtn.style.display = 'none';
+        codeSection.style.display = 'block';
+        codeMsg.style.display = 'none';
+        codeInput.value = '';
+        sendCodeBtn.disabled = false;
+        sendCodeBtn.innerHTML = 'Envoyer le code <i class="fa fa-paper-plane"></i>';
+      }, 1200);
+    };
+    validateCodeBtn.onclick = function() {
+      if(codeInput.value.trim() === '123456') {
+        codeMsg.style.display = 'none';
+        codeSection.style.display = 'none';
+        successMsg.style.display = 'block';
+        setTimeout(() => {
+          window.location.href = 'compte.html';
+        }, 1800);
+      } else {
+        codeMsg.textContent = 'Code incorrect. Essayez 123456 pour la démo.';
+        codeMsg.style.display = 'block';
+      }
+    };
+  </script>
+</body>
+</html> 

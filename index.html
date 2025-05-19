@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tazira - Soins capillaires naturels</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --vert-sidr: #7c9452;
+      --jaune-dore: #E5C335;
+      --fond: #f6f6f6;
+      --gris: #e0e0e0;
+      --text: #222;
+      --ombre: 0 4px 24px rgba(80,98,58,0.10);
+    }
+    body {
+      margin: 0;
+      font-family: 'Raleway', 'Quicksand', Arial, sans-serif;
+      background: var(--fond);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* NAVBAR */
+    header {
+      background: var(--vert-sidr);
+      box-shadow: var(--ombre);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: fadeDown 1s cubic-bezier(.4,1.4,.6,1);
+    }
+    @keyframes fadeDown {
+      0% { opacity: 0; transform: translateY(-40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #7c9452;
+      padding: 0.5rem 2.5rem 0.5rem 1.2rem;
+      box-shadow: 0 2px 12px #0001;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo-box {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 4px 24px;
+      display: flex;
+      align-items: center;
+      margin-right: 2.5rem;
+    }
+    .logo-img {
+      height: 90px;
+      width: auto;
+      display: block;
+      transition: transform 0.2s;
+    }
+    .logo-img:hover {
+      transform: scale(1.07) rotate(-3deg);
+    }
+    .nav-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.7rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 0.5rem 0.7rem;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.18s;
+      position: relative;
+      display: inline-block;
+    }
+    .nav-links li a:hover {
+      color: #e5c335;
+      background: #fff2;
+      transform: translateY(-2px) scale(1.07);
+      box-shadow: 0 2px 8px #e5c33544;
+    }
+    .nav-links li a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 3px;
+      background: #e5c335;
+      border-radius: 2px;
+      transition: width 0.3s;
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+    }
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+    .icons {
+      display: flex;
+      align-items: center;
+      gap: 1.7rem;
+      margin-left: 2.5rem;
+    }
+    .icons a {
+      color: #fff;
+      font-size: 2rem;
+      text-decoration: none;
+      transition: color 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .icons a:hover {
+      color: #e5c335;
+      transform: scale(1.15) translateY(-2px);
+    }
+    /* HERO */
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(120deg, var(--fond) 70%, var(--jaune-dore) 100%);
+      text-align: center;
+      padding: 5rem 1rem 3rem 1rem;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1.2s;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('images/accueil-visuel.jpg') center/cover no-repeat;
+      opacity: 0.85;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      color: var(--vert-sidr);
+      margin-bottom: 1rem;
+      font-family: 'Raleway', 'Quicksand', Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 8px #fff8;
+      animation: heroTextFade 1.1s cubic-bezier(.4,1.4,.6,1);
+    }
+    .hero p {
+      font-size: 1.3rem;
+      color: #555;
+      background: rgba(255,255,255,0.85);
+      border-radius: 14px;
+      padding: 18px 28px;
+      box-shadow: 0 2px 12px rgba(118,128,101,0.07);
+      margin-bottom: 2rem;
+      animation: heroTextFade 1.5s cubic-bezier(.4,1.4,.6,1);
+    }
+    @keyframes heroTextFade {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .cta-hero-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 18px 44px;
+      background: var(--vert-sidr);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(229,195,53,0.13), 0 1.5px 8px rgba(118,128,101,0.10);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.18s, box-shadow 0.18s;
+      animation: heroBtnPop 1.7s cubic-bezier(.4,1.4,.6,1);
+    }
+    .cta-hero-btn:hover {
+      background: var(--jaune-dore);
+      color: var(--vert-sidr);
+      transform: scale(1.07) translateY(-2px);
+      box-shadow: 0 8px 32px rgba(229,195,53,0.22);
+    }
+    @keyframes heroBtnPop {
+      0% { opacity: 0; transform: scale(0.7); }
+      80% { opacity: 1; transform: scale(1.08); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    /* PRODUITS */
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin: 80px 0 40px;
+      color: var(--vert-sidr);
+      font-weight: 700;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--jaune-dore);
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+    .products-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
+      margin-bottom: 60px;
+      animation: fadeIn 1.2s;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px #0001;
+      padding: 1.5rem 1rem;
+      width: 240px;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s, border 0.2s;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid #e5c33533;
+    }
+    .product-card:hover {
+      box-shadow: 0 8px 32px #e5c33544;
+      border: 2px solid #e5c335;
+      transform: translateY(-8px) scale(1.03);
+    }
+    .product-image, .product-card iframe {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      border-radius: 12px;
+      margin: 0 auto 1rem auto;
+      background: #f6f6f6;
+      display: block;
+      box-shadow: 0 2px 8px #0001;
+      transition: box-shadow 0.2s;
+    }
+    .product-card:hover .product-image, .product-card:hover iframe {
+      box-shadow: 0 4px 18px #e5c335;
+    }
+    .product-info h3 {
+      color: #7c9452;
+      font-family: 'Raleway', 'Nunito Sans', Arial, sans-serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.2px;
+      text-shadow: none;
+    }
+    .product-info .price {
+      color: #e5c335;
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: none;
+    }
+    .product-info .description {
+      color: #222;
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+      min-height: 48px;
+      font-style: normal;
+      font-weight: 400;
+      text-shadow: none;
+    }
+    .view-product {
+      display: inline-block;
+      background: #7c9452;
+      color: #fff;
+      font-family: 'Raleway', 'Nunito Sans', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border: none;
+      border-radius: 10px;
+      padding: 0.7rem 2rem;
+      margin-top: 0.7rem;
+      box-shadow: 0 2px 8px #0001;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.18s, box-shadow 0.18s;
+    }
+    .view-product:hover {
+      background: #e5c335;
+      color: #7c9452;
+      transform: scale(1.07);
+      box-shadow: 0 4px 18px #e5c33555;
+    }
+    /* FOOTER */
+    footer {
+      background: var(--vert-sidr);
+      color: #fff;
+      padding: 2rem 0 1.2rem 0;
+      margin-top: auto;
+      box-shadow: 0 -2px 12px #0001;
+    }
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 2rem;
+    }
+    .footer-content .mentions {
+      font-size: 1rem;
+      color: var(--jaune-dore);
+      margin-left: 1.5rem;
+    }
+    .social-links a {
+      margin-left: 1rem;
+      color: #fff;
+      font-size: 1.3rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .social-links a:hover {
+      color: var(--jaune-dore);
+    }
+    /* Chatbot (réinitialisé) */
+    .chatbot-button {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      cursor: pointer;
+      background: var(--vert-sidr);
+      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px #0002;
+      transition: background 0.2s, box-shadow 0.2s;
+      border: 2px solid #fff;
+    }
+    .chatbot-button:hover {
+      background: var(--jaune-dore);
+      box-shadow: 0 4px 16px #0003;
+    }
+    .chatbot-button img {
+      width: 24px;
+      height: 24px;
+    }
+    .chatbot-window {
+      position: fixed;
+      bottom: 86px;
+      right: 24px;
+      width: 340px;
+      max-width: 95vw;
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 24px #0003;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 101;
+      animation: fadeIn 0.5s;
+    }
+    .chatbot-window.hidden {
+      display: none;
+    }
+    .chatbot-header {
+      background: var(--vert-sidr);
+      color: #fff;
+      padding: 1rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    .chatbot-messages {
+      flex: 1;
+      padding: 1rem;
+      background: var(--fond);
+      overflow-y: auto;
+      min-height: 80px;
+      max-height: 200px;
+    }
+    .bot-message, .user-message {
+      margin-bottom: 0.7rem;
+      padding: 0.7rem 1rem;
+      border-radius: 1rem;
+      max-width: 85%;
+      font-size: 1rem;
+    }
+    .bot-message {
+      background: var(--jaune-dore);
+      color: var(--vert-sidr);
+      align-self: flex-start;
+    }
+    .user-message {
+      background: var(--vert-sidr);
+      color: #fff;
+      align-self: flex-end;
+    }
+    .chatbot-form {
+      display: flex;
+      border-top: 1px solid var(--gris);
+    }
+    .chatbot-input {
+      flex: 1;
+      border: none;
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 0 0 0 1rem;
+      outline: none;
+    }
+    .chatbot-form button {
+      background: var(--jaune-dore);
+      color: var(--vert-sidr);
+      border: none;
+      padding: 0 1.2rem;
+      font-size: 1rem;
+      border-radius: 0 0 1rem 0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .chatbot-form button:hover {
+      background: var(--vert-sidr);
+      color: #fff;
+    }
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+      }
+      .logo-box {
+        margin-bottom: 1rem;
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+      .icons {
+        margin: 1rem 0 0 0;
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .products-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    }
+    /* Section Promotion */
+    .promotion-section {
+      background: linear-gradient(120deg, var(--vert-sidr) 0%, var(--jaune-dore) 100%);
+      padding: 3rem 1rem;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1.2s;
+    }
+
+    .promotion-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .promotion-section h2 {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .promotion-section p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+
+    .promotion-price {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      opacity: 0.7;
+      font-size: 1.3rem;
+    }
+
+    .new-price {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .promotion-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: #fff;
+      color: var(--vert-sidr);
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    .promotion-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 600px) {
+      .promotion-section h2 {
+        font-size: 2rem;
+      }
+      .promotion-section p {
+        font-size: 1.1rem;
+      }
+      .new-price {
+        font-size: 1.8rem;
+      }
+    }
+    .offre-clignotante {
+      color: #e53935;
+      font-weight: bold;
+      font-size: 2.1rem;
+      animation: clignote 1s infinite alternate;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #fff8;
+    }
+    @keyframes clignote {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo-box">
+        <img src="logo-tazira.png" alt="Tazira" class="logo-img">
+      </div>
+      <div class="nav-center">
+        <ul class="nav-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="produits.html">Nos Produits</a></li>
+          <li><a href="notre-histoire.html">Notre Histoire</a></li>
+          <li><a href="rituels.html">Rituels & Conseils</a></li>
+        </ul>
+      </div>
+      <div class="icons">
+        <a href="compte.html" title="Compte"><i class="fas fa-user"></i></a>
+        <a href="panier.html" title="Panier"><i class="fas fa-shopping-cart"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="accueil">
+    <div class="hero-content">
+      <h1>Bienvenue chez Tazira</h1>
+      <p>Des soins capillaires 100 % naturels à base de sidr, inspirés de la tradition marocaine pour révéler la beauté authentique de vos cheveux.</p>
+      <a href="#produits" class="cta-hero-btn">Découvrir le produit</a>
+    </div>
+  </section>
+
+  <!-- Section Promotion -->
+  <section class="promotion-section">
+    <div class="promotion-content">
+      <div class="offre-clignotante">
+        Offre Spéciale<br>
+        <span style="font-size:1.1rem; font-weight:400;">Soyez les premiers à profiter de cette offre spéciale</span>
+      </div>
+      <p>Profitez de notre gamme complète à prix réduit !</p>
+      <div class="promotion-price">
+        <span class="original-price">425 MAD</span>
+        <span class="new-price">350 MAD</span>
+      </div>
+      <a href="produits/gamme.html" class="promotion-btn">Découvrir l'offre</a>
+    </div>
+  </section>
+
+  <h2 class="section-title" id="produits">Nos Produits</h2>
+  <div class="products-grid">
+    <div class="product-card">
+      <iframe title="Après-shampoing démêlant" allowfullscreen style="border:none; border-radius:12px; background:#f6f6f6; box-shadow:0 2px 8px #0001; width:100%; height:220px; margin-bottom:10px;" src="https://www.pacdora.com/share?filter_url=ps1r4bnlkl"></iframe>
+      <div class="product-info">
+        <h3>Après-shampoing démêlant</h3>
+        <div class="price">75 MAD</div>
+        <div class="description">Facilite le démêlage sans alourdir les cheveux, pour une chevelure douce et soyeuse.</div>
+        <a href="produits/apres-shampoing.html" class="view-product">Voir le produit</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <iframe title="Shampoing purifiant au sidr" allowfullscreen style="border:none; border-radius:12px; background:#f6f6f6; box-shadow:0 2px 8px #0001; width:100%; height:220px; margin-bottom:10px;" src="https://www.pacdora.com/share?filter_url=psbs85eu1e"></iframe>
+      <div class="product-info">
+        <h3>Shampoing purifiant au sidr</h3>
+        <div class="price">85 MAD</div>
+        <div class="description">Nettoie en douceur et purifie le cuir chevelu avec les bienfaits naturels du sidr.</div>
+        <a href="produits/shampoing.html" class="view-product">Voir le produit</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <iframe title="Masque nourrissant au sidr" allowfullscreen style="border:none; border-radius:12px; background:#f6f6f6; box-shadow:0 2px 8px #0001; width:100%; height:220px; margin-bottom:10px;" src="https://www.pacdora.com/share?filter_url=ps22r3lhj9"></iframe>
+      <div class="product-info">
+        <h3>Masque nourrissant au sidr</h3>
+        <div class="price">95 MAD</div>
+        <div class="description">Nourrit intensément et répare les cheveux secs pour une chevelure revitalisée.</div>
+        <a href="produits/masque.html" class="view-product">Voir le produit</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <iframe title="Crème coiffante protectrice" allowfullscreen style="border:none; border-radius:12px; background:#f6f6f6; box-shadow:0 2px 8px #0001; width:100%; height:220px; margin-bottom:10px;" src="https://www.pacdora.com/share?filter_url=psfbro984d"></iframe>
+      <div class="product-info">
+        <h3>Crème coiffante protectrice</h3>
+        <div class="price">80 MAD</div>
+        <div class="description">Hydrate, définit et protège la fibre capillaire pour un style parfait.</div>
+        <a href="produits/creme.html" class="view-product">Voir le produit</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <iframe title="Sérum réparateur (pointes)" allowfullscreen style="border:none; border-radius:12px; background:#f6f6f6; box-shadow:0 2px 8px #0001; width:100%; height:220px; margin-bottom:10px;" src="https://www.pacdora.com/share?filter_url=psygli2a2c"></iframe>
+      <div class="product-info">
+        <h3>Sérum réparateur (pointes)</h3>
+        <div class="price">90 MAD</div>
+        <div class="description">Protège les pointes, apporte brillance et réparation pour des cheveux en pleine santé.</div>
+        <a href="produits/serum.html" class="view-product">Voir le produit</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chatbot (réinitialisé) -->
+  <div class="chatbot-button" id="tazira-chatbot-btn" title="Discuter avec nous">
+    <i class="fas fa-robot" style="font-size: 2rem; color: #fff;"></i>
+  </div>
+  <div class="chatbot-window hidden" id="tazira-chatbot-window">
+    <div class="chatbot-header">
+      <span>Tazira Chat</span>
+      <button id="tazira-chatbot-close">×</button>
+    </div>
+    <div class="chatbot-messages" id="tazira-chatbot-messages">
+      <div class="bot-message">Bonjour ! Comment puis-je vous aider ?</div>
+    </div>
+    <form class="chatbot-form" id="tazira-chatbot-form" autocomplete="off">
+      <input type="text" class="chatbot-input" id="tazira-chatbot-input" placeholder="Votre message..." required />
+      <button type="submit">Envoyer</button>
+    </form>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="mentions">
+        © 2024 Tazira - Tous droits réservés
+      </div>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Chatbot Tazira - version réinitialisée
+    // (reprend toutes les fonctionnalités FAQ, quiz, réponses, etc.)
+    document.addEventListener('DOMContentLoaded', function() {
+      const chatBtn = document.getElementById('tazira-chatbot-btn');
+      const chatWindow = document.getElementById('tazira-chatbot-window');
+      const closeBtn = document.getElementById('tazira-chatbot-close');
+      const chatForm = document.getElementById('tazira-chatbot-form');
+      const chatInput = document.getElementById('tazira-chatbot-input');
+      const messagesDiv = document.getElementById('tazira-chatbot-messages');
+
+      // Base de connaissances et quiz (reprend vos données)
+      const botFaq = [
+        { questions: ['quels sont les produits proposés', 'vos produits', 'produits tazira', 'gamme de produits', 'que proposez-vous'], answer: `Tazira propose une gamme de soins capillaires 100 % naturels à base de sidr :\n• Shampoing purifiant\n• Après-shampoing démêlant\n• Masque nourrissant\n• Crème coiffante protectrice\n• Sérum réparateur` },
+        { questions: ['c\'est quoi le sidr', 'qu\'est-ce que le sidr', 'sidr', 'le sidr'], answer: `Le sidr est une plante marocaine utilisée depuis des siècles pour ses vertus purifiantes, fortifiantes et apaisantes pour le cuir chevelu.` },
+        { questions: ['quels sont les ingrédients', 'ingrédients', 'composition', 'que contiennent vos produits'], answer: `• Feuilles de sidr\n• Huile d'argan\n• Huile de nigelle\n• Beurre de karité\n• Eau florale de lavande\n• Camomille\n• Aloe vera` },
+        { questions: ['à qui s\'adressent', 'pour qui sont vos produits', 'vos produits conviennent à qui', 'public', 'pour quel type de cheveux'], answer: `À tous types de cheveux : raides, bouclés, ondulés, crépus. Convient aussi aux personnes après chimiothérapie ou aux cuirs chevelus sensibles.` },
+        { questions: ['enfants', 'femmes enceintes', 'conviennent aux enfants', 'adaptés aux femmes enceintes'], answer: `Oui, car ils sont naturels. Mais en cas de doute, demandez l'avis de votre médecin.` },
+        { questions: ['où acheter', 'comment acheter', 'achat', 'commander'], answer: `Directement sur notre site web, dans la section "Produits".` },
+        { questions: ['livraison', 'délais de livraison', 'délai de livraison'], answer: `Sous 3 à 5 jours ouvrables, avec un numéro de suivi envoyé par e-mail.` },
+        { questions: ['suivi de commande', 'comment suivre ma commande', 'suivi', 'tracking'], answer: `Oui, grâce au lien de suivi envoyé après l'expédition.` },
+        { questions: ['comment vous contacter', 'contact', 'service client', 'joindre tazira', 'contacter tazira'], answer: `Par formulaire sur notre site, par mail, ou directement dans ce chat. Réponse sous 24h.` },
+        { questions: ['diagnostic personnalisé', 'diagnostic', 'quiz capillaire', 'quiz', 'routine personnalisée'], answer: `Un quiz capillaire sera bientôt disponible pour vous aider à choisir la meilleure routine.` }
+      ];
+
+      const quizSteps = [
+        { question: '1. Quel est votre type de cheveux ?', options: ['Lisses', 'Ondulés', 'Bouclés', 'Crépus'] },
+        { question: '2. Comment est votre cuir chevelu ?', options: ['Gras', 'Sec', 'Normal', 'Sensible ou irrité'] },
+        { question: '3. Quel est votre objectif principal ?', options: ['Réduire les pellicules', 'Apporter de l\'hydratation', 'Nourrir les pointes sèches', 'Apaiser les démangeaisons', 'Définir les boucles', 'Protéger les cheveux colorés'] },
+        { question: '4. Utilisez-vous souvent des appareils chauffants (lisseur, fer, sèche-cheveux) ?', options: ['Oui, souvent', 'De temps en temps', 'Non'] },
+        { question: '5. À quelle fréquence lavez-vous vos cheveux ?', options: ['Tous les jours', '2 à 3 fois par semaine', '1 fois par semaine', 'Moins d\'une fois par semaine'] }
+      ];
+      let quizStep = 0;
+      let quizAnswers = {};
+
+      // Liste des questions FAQ à afficher dès l'ouverture
+      const faqQuickQuestions = [
+        "Quels sont les produits proposés par Tazira ?",
+        "C'est quoi le sidr ?",
+        "Quels sont les ingrédients utilisés dans vos produits ?",
+        "À qui s'adressent les produits Tazira ?",
+        "Est-ce que les produits conviennent aux enfants ou femmes enceintes ?",
+        "Où acheter vos produits ?",
+        "Comment se passe la livraison ?",
+        "Est-ce que je peux suivre ma commande ?",
+        "Comment vous contacter ?",
+        "Proposez-vous un diagnostic personnalisé ?"
+      ];
+
+      // Liste des variantes pour lancer le quiz directement
+      const quizTriggerQuestions = [
+        "proposez-vous un diagnostic personnalisé",
+        "diagnostic personnalisé",
+        "diagnostic",
+        "quiz capillaire",
+        "quiz",
+        "routine personnalisée"
+      ];
+
+      // Affichage des messages
+      function addMessage(message, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = isUser ? 'user-message' : 'bot-message';
+        messageDiv.textContent = message;
+        messagesDiv.appendChild(messageDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      }
+
+      // Ajout d'un indicateur de "le bot écrit..."
+      function showTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'bot-message typing-indicator-container';
+        typingDiv.innerHTML = '<span class="typing-indicator"><span></span><span></span><span></span></span>';
+        messagesDiv.appendChild(typingDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        return typingDiv;
+      }
+      function removeTypingIndicator() {
+        const typing = messagesDiv.querySelector('.typing-indicator-container');
+        if (typing) typing.remove();
+      }
+
+      // Affichage des questions FAQ sous forme de boutons
+      function showFaqQuickQuestions() {
+        const quickDiv = document.createElement('div');
+        quickDiv.className = 'quick-replies';
+        faqQuickQuestions.forEach(q => {
+          const btn = document.createElement('button');
+          btn.className = 'quick-reply-btn';
+          btn.textContent = q;
+          btn.onclick = () => {
+            addMessage(q, true);
+            // Si c'est la question diagnostic ou quiz, lancer le quiz immédiatement et ne rien afficher d'autre
+            if (q.toLowerCase().includes('diagnostic') || q.toLowerCase().includes('quiz')) {
+              // Nettoyer les quick-replies FAQ pour ne garder que le quiz
+              const allQuick = messagesDiv.querySelectorAll('.quick-replies');
+              allQuick.forEach(qr => qr.remove());
+              quizStep = 1;
+              quizAnswers = {};
+              addMessage(quizSteps[0].question);
+              addQuickReplies(quizSteps[0].options);
+            } else {
+              handleBotResponse(q.toLowerCase());
+            }
+          };
+          quickDiv.appendChild(btn);
+        });
+        messagesDiv.appendChild(quickDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      }
+
+      // Afficher un bouton pour lancer le quiz
+      function showQuizButton() {
+        const quickDiv = document.createElement('div');
+        quickDiv.className = 'quick-replies';
+        const btn = document.createElement('button');
+        btn.className = 'quick-reply-btn';
+        btn.textContent = 'Commencer le quiz';
+        btn.onclick = () => {
+          addMessage('Commencer le quiz', true);
+          launchQuiz();
+        };
+        quickDiv.appendChild(btn);
+        messagesDiv.appendChild(quickDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      }
+
+      // Fonction pour lancer le quiz
+      function launchQuiz() {
+        addMessage('Quiz Capillaire Tazira – Trouvez votre routine idéale\n\n' + quizSteps[0].question);
+        addQuickReplies(quizSteps[0].options);
+        quizStep = 1;
+        quizAnswers = {};
+      }
+
+      // Gestion des réponses rapides
+      function handleQuickReply(reply) {
+        addMessage(reply, true);
+        if (quizStep > 0) {
+          handleQuizAnswer(reply);
+        } else if (reply.toLowerCase().includes('quiz')) {
+          launchQuiz();
+        } else {
+          handleBotResponse(reply.toLowerCase());
+        }
+      }
+
+      // Gestion de la soumission du formulaire
+      function handleChatSubmit(event) {
+        event.preventDefault();
+        const message = chatInput.value.trim();
+        if (!message) return;
+        addMessage(message, true);
+        chatInput.value = '';
+        if (quizStep > 0) {
+          handleQuizAnswer(message);
+        } else {
+          handleBotResponse(message.toLowerCase());
+        }
+      }
+
+      // Logique de réponse du bot
+      function handleBotResponse(message) {
+        for (const trigger of quizTriggerQuestions) {
+          if (message.includes(trigger)) {
+            const allQuick = messagesDiv.querySelectorAll('.quick-replies');
+            allQuick.forEach(qr => qr.remove());
+            quizStep = 1;
+            quizAnswers = {};
+            showTypingIndicator();
+            setTimeout(() => {
+              removeTypingIndicator();
+              addMessage(quizSteps[0].question);
+              addQuickReplies(quizSteps[0].options);
+            }, 700);
+            return;
+          }
+        }
+        let found = false;
+        let response = '';
+        for (const faq of botFaq) {
+          for (const q of faq.questions) {
+            if (message.includes(q)) {
+              response = faq.answer;
+              found = true;
+              break;
+            }
+          }
+          if (found) break;
+        }
+        if (found) {
+          showTypingIndicator();
+          setTimeout(() => {
+            removeTypingIndicator();
+            addMessage(response);
+            if (message.includes('diagnostic') || message.includes('quiz')) {
+              showQuizButton();
+            }
+          }, 700);
+          return;
+        }
+        showTypingIndicator();
+        setTimeout(() => {
+          removeTypingIndicator();
+          addMessage('Je ne comprends pas votre question. Vous pouvez me demander des informations sur nos produits, le sidr, les ingrédients, ou commencer le quiz capillaire.');
+          addQuickReplies(['Voir les produits', 'Qu\'est-ce que le sidr ?', 'Commencer le quiz']);
+        }, 700);
+      }
+
+      // Gestion du quiz
+      function handleQuizAnswer(answer) {
+        quizAnswers[`question${quizStep}`] = answer;
+        quizStep++;
+        if (quizStep <= quizSteps.length) {
+          const step = quizSteps[quizStep - 1];
+          showTypingIndicator();
+          setTimeout(() => {
+            removeTypingIndicator();
+            addMessage(step.question);
+            addQuickReplies(step.options);
+          }, 700);
+        } else {
+          const routine = getRecommendedRoutine(quizAnswers);
+          showTypingIndicator();
+          setTimeout(() => {
+            removeTypingIndicator();
+            addMessage(routine);
+            showProductsButton();
+            addQuickReplies(['Recommencer le quiz']);
+            quizStep = 0;
+            quizAnswers = {};
+          }, 900);
+        }
+      }
+
+      // Affiche un vrai bouton/lien pour voir les produits
+      function showProductsButton() {
+        // Supprimer les anciens boutons produits s'il y en a
+        const oldBtn = messagesDiv.querySelector('.btn-view-products');
+        if (oldBtn) oldBtn.remove();
+        const div = document.createElement('div');
+        div.style.display = 'flex';
+        div.style.justifyContent = 'center';
+        div.style.margin = '18px 0 8px 0';
+        const a = document.createElement('a');
+        a.href = '#produits';
+        a.textContent = 'Voir les produits';
+        a.className = 'btn-view-products';
+        a.style.background = '#768065';
+        a.style.color = '#fff';
+        a.style.padding = '14px 32px';
+        a.style.borderRadius = '24px';
+        a.style.fontWeight = '700';
+        a.style.fontSize = '1.1rem';
+        a.style.textDecoration = 'none';
+        a.style.boxShadow = '0 2px 8px rgba(118,128,101,0.10)';
+        a.style.transition = 'background 0.2s, color 0.2s, transform 0.18s';
+        a.onmouseover = function() {
+          a.style.background = '#e5c335';
+          a.style.color = '#50623A';
+          a.style.transform = 'scale(1.06)';
+        };
+        a.onmouseout = function() {
+          a.style.background = '#768065';
+          a.style.color = '#fff';
+          a.style.transform = 'scale(1)';
+        };
+        div.appendChild(a);
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      }
+
+      // Logique de routine personnalisée
+      function getRecommendedRoutine(answers) {
+        const t1 = (answers.question1 || '').toLowerCase();
+        const t2 = (answers.question2 || '').toLowerCase();
+        const t3 = (answers.question3 || '').toLowerCase();
+        if (t1.includes('bouclé') && t2.includes('sec') && t3.includes('hydratation')) {
+          return 'Routine recommandée :\n• Shampoing purifiant au sidr\n• Masque nourrissant\n• Crème coiffante protectrice\n• Sérum réparateur pour les pointes';
+        }
+        if (t1.includes('lisse') && t2.includes('gras')) {
+          return 'Routine recommandée :\n• Shampoing purifiant au sidr\n• Après-shampoing démêlant (léger)\n• Sérum réparateur uniquement sur les pointes';
+        }
+        if (t1.includes('crépu') && (t2.includes('sensible') || t2.includes('irrité'))) {
+          return 'Routine recommandée :\n• Shampoing doux au sidr et camomille\n• Masque nourrissant au beurre de karité\n• Crème protectrice pour définir et assouplir';
+        }
+        return 'Routine recommandée :\n• Shampoing purifiant au sidr\n• Après-shampoing démêlant\n• Crème coiffante protectrice';
+      }
+
+      // Ouverture/fermeture du chatbot
+      chatBtn.addEventListener('click', function() {
+        chatWindow.classList.toggle('hidden');
+        if (!chatWindow.classList.contains('hidden')) {
+          // Nettoyer les anciens quick-replies FAQ si déjà présents
+          const allQuick = messagesDiv.querySelectorAll('.quick-replies');
+          allQuick.forEach(q => q.remove());
+          showFaqQuickQuestions();
+        }
+        chatInput.focus();
+      });
+      closeBtn.addEventListener('click', function() {
+        chatWindow.classList.add('hidden');
+      });
+      chatForm.addEventListener('submit', handleChatSubmit);
+
+      function addQuickReplies(replies) {
+        // Supprimer tous les anciens quick-replies avant d'en ajouter de nouveaux
+        const allQuick = messagesDiv.querySelectorAll('.quick-replies');
+        allQuick.forEach(q => q.remove());
+        const quickRepliesDiv = document.createElement('div');
+        quickRepliesDiv.className = 'quick-replies';
+        replies.forEach(reply => {
+          const button = document.createElement('button');
+          button.className = 'quick-reply-btn';
+          button.textContent = reply;
+          button.onclick = () => handleQuickReply(reply);
+          quickRepliesDiv.appendChild(button);
+        });
+        messagesDiv.appendChild(quickRepliesDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      }
+    });
+  </script>
+</body>
+</html> 

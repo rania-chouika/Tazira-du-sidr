@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Compte Tazira</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin:0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(120deg, #f6eec2 0%, #e5c335 100%);
+      background-size: 300% 300%;
+      animation: gradientMove 12s ease-in-out infinite;
+      overflow-x: hidden;
+      color: #2f4f4f;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      gap: 1.2em;
+      background: #7c9452;
+      padding: 0.7em 2em;
+      border-radius: 0 0 18px 18px;
+      margin-bottom: 2.2em;
+    }
+    .navbar-logo {
+      height: 38px;
+      margin-right: 2em;
+    }
+    .navbar a {
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1.08em;
+      margin: 0 0.7em;
+      transition: color 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .navbar a:hover {
+      color: #e5c335;
+    }
+    .nav-icons {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 1.1em;
+    }
+    .nav-icon {
+      color: #fff;
+      font-size: 1.35em;
+      margin-left: 0.7em;
+      transition: color 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .nav-icon:hover {
+      color: #e5c335;
+      transform: scale(1.18) rotate(-8deg);
+    }
+    .main-container {
+      max-width: 900px;
+      margin: 50px auto;
+      background: #fffaf0ee;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px #e5c33544, 0 2px 8px #0001;
+      padding: 32px 40px 32px 40px;
+      position: relative;
+      animation: fadeInUp 1s cubic-bezier(.7,0,.3,1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .account-form {
+      width: 100%;
+      max-width: 420px;
+      background: #fffbe6;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #e5c33522;
+      padding: 2.2em 2em 1.5em 2em;
+      margin: 0 auto 2em auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      align-items: center;
+      animation: fadeInUp 1.1s cubic-bezier(.7,0,.3,1);
+    }
+    .account-form h2 {
+      font-family: 'Pacifico', cursive;
+      color: #7c9452;
+      font-size: 1.5em;
+      margin-bottom: 0.7em;
+      text-align: center;
+    }
+    .input-group {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
+      border: 2px solid #e5c33533;
+      box-shadow: 0 1.5px 6px #e5c33511;
+      padding: 0.7em 1em;
+      margin-bottom: 0.2em;
+      transition: box-shadow 0.22s, border 0.22s, background 0.22s;
+      position: relative;
+    }
+    .input-group:focus-within {
+      border-color: #e5c335;
+      box-shadow: 0 0 0 4px #e5c33533, 0 1.5px 6px #e5c33522;
+      background: #fffde6;
+    }
+    .input-group i {
+      color: #b6cfa5;
+      font-size: 1.1em;
+      min-width: 22px;
+      margin-right: 0.7em;
+      transition: color 0.2s;
+    }
+    .input-group:focus-within i {
+      color: #e5c335;
+    }
+    .account-form input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1.08em;
+      font-family: inherit;
+      width: 100%;
+      color: #3b4d23;
+      padding: 0.6em 0.2em;
+    }
+    .account-form input::placeholder {
+      color: #b6cfa5bb;
+      font-size: 0.98em;
+      letter-spacing: 0.5px;
+    }
+    .account-form button {
+      margin-top: 0.7em;
+      background: linear-gradient(90deg, #e5c335 60%, #7c9452 100%);
+      border: none;
+      color: white;
+      padding: 1em 0;
+      width: 100%;
+      font-size: 1.13em;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #e5c33533, 0 0 16px #e5c33522;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7em;
+      position: relative;
+      overflow: hidden;
+      animation: btnPulse 1.2s infinite alternate, fadeInUp 1.1s 0.5s both;
+    }
+    @keyframes btnPulse {
+      0% { box-shadow: 0 2px 8px #e5c33522, 0 0 0 #e5c33500; }
+      100% { box-shadow: 0 6px 18px #e5c33544, 0 0 8px #e5c33533; }
+    }
+    .account-form button:hover {
+      background: linear-gradient(90deg, #7c9452 60%, #e5c335 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px #e5c33599, 0 0 24px #e5c33544;
+      transform: scale(1.04) rotate(-2deg);
+    }
+    .hidden { display: none !important; }
+    /* Section infos après création */
+    .account-infos {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fffbe6;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #e5c33522;
+      padding: 2em 2em 1.5em 2em;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+      align-items: flex-start;
+      animation: fadeInUp 1.1s cubic-bezier(.7,0,.3,1);
+    }
+    .account-infos h2 {
+      font-family: 'Pacifico', cursive;
+      color: #7c9452;
+      font-size: 1.3em;
+      margin-bottom: 0.7em;
+      text-align: left;
+    }
+    .account-infos p, .account-infos li {
+      font-size: 1.08em;
+      color: #3b4d23;
+      margin: 0.2em 0 0.7em 0;
+    }
+    .account-infos strong {
+      color: #7c9452;
+    }
+    .account-infos .fa {
+      color: #e5c335;
+      margin-right: 0.5em;
+      font-size: 1.1em;
+      vertical-align: middle;
+      transition: transform 0.2s;
+    }
+    .account-infos .fa:hover {
+      transform: rotate(-12deg) scale(1.18);
+    }
+    .account-infos button {
+      background: linear-gradient(90deg, #e5c335 60%, #7c9452 100%);
+      border: none;
+      color: white;
+      padding: 0.7em 1.5em;
+      font-size: 1.08em;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #e5c33533, 0 0 16px #e5c33522;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+      margin-top: 0.5em;
+      animation: btnPulse 1.2s infinite alternate;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .account-infos button:hover {
+      background: linear-gradient(90deg, #7c9452 60%, #e5c335 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px #e5c33599, 0 0 24px #e5c33544;
+      transform: scale(1.04) rotate(-2deg);
+    }
+    .orders-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .orders-list li {
+      background: #e5f0d9;
+      margin-bottom: 10px;
+      border-radius: 15px;
+      padding: 15px 20px;
+      box-shadow: inset 0 0 8px #b4ca8c;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+    }
+    .orders-list li:hover {
+      background: #c0d29a;
+    }
+    @media (max-width: 700px) {
+      .main-container {
+        margin: 20px 5px;
+        padding: 18px 4vw 18px 4vw;
+      }
+      .account-form, .account-infos {
+        padding: 1.2em 0.7em 1em 0.7em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <img src="../logo-tazira.png" alt="Tazira" class="navbar-logo" />
+    <a href="../index.html">Accueil</a>
+    <a href="../produits.html">Nos Produits</a>
+    <a href="../histoire.html">Notre Histoire</a>
+    <a href="../rituels.html">Rituels & Conseils</a>
+    <div class="nav-icons">
+      <a href="compte.html" class="nav-icon" title="Mon compte"><i class="fa fa-user"></i></a>
+      <a href="../panier.html" class="nav-icon" title="Panier"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+  </nav>
+  <main class="main-container">
+    <form class="account-form" id="createAccountForm">
+      <h2><i class="fa fa-user-plus"></i> Créer mon compte</h2>
+      <div class="input-group">
+        <i class="fa fa-user"></i>
+        <input type="text" id="inputName" placeholder="Nom complet" required />
+      </div>
+      <div class="input-group">
+        <i class="fa fa-envelope"></i>
+        <input type="email" id="inputEmail" placeholder="Email" required />
+      </div>
+      <div class="input-group">
+        <i class="fa fa-phone"></i>
+        <input type="tel" id="inputPhone" placeholder="Téléphone" required />
+      </div>
+      <div class="input-group">
+        <i class="fa fa-lock"></i>
+        <input type="password" id="inputPassword" placeholder="Mot de passe" required />
+      </div>
+      <button type="submit"><i class="fa fa-magic"></i> Créer mon compte</button>
+    </form>
+    <div class="account-infos hidden" id="accountInfos">
+      <h2><i class="fa fa-user-circle"></i> Mon Compte</h2>
+      <section class="info-section" aria-label="Informations personnelles">
+        <p><i class="fa fa-user"></i> <strong>Nom :</strong> <span id="displayName">-</span></p>
+        <p><i class="fa fa-envelope"></i> <strong>Email :</strong> <span id="displayEmail">-</span></p>
+        <p><i class="fa fa-phone"></i> <strong>Téléphone :</strong> <span id="displayPhone">-</span></p>
+        <p><i class="fa fa-map-marker-alt"></i> <strong>Adresse :</strong> 123 Rue Naturelle, Casablanca</p>
+        <button type="button" id="editBtn"><i class="fa fa-edit"></i> Modifier mes informations</button>
+      </section>
+      <section class="info-section" aria-label="Historique des commandes">
+        <h2><i class="fa fa-box"></i> Historique des commandes</h2>
+        <ul class="orders-list" role="list">
+          <li tabindex="0"><i class="fa fa-check-circle"></i> Commande #12345 - Livrée</li>
+          <li tabindex="0"><i class="fa fa-truck"></i> Commande #12346 - En cours</li>
+          <li tabindex="0"><i class="fa fa-times-circle"></i> Commande #12347 - Annulée</li>
+        </ul>
+      </section>
+      <section class="info-section" aria-label="Points de fidélité">
+        <h2><i class="fa fa-star"></i> Points de fidélité</h2>
+        <p>✨ 150 points</p>
+      </section>
+      <section>
+        <button type="button"><i class="fa fa-file-invoice"></i> Télécharger mes factures</button>
+        <button type="button"><i class="fa fa-sign-out-alt"></i> Déconnexion</button>
+      </section>
+    </div>
+  </main>
+  <script>
+    // Formulaire création de compte
+    const form = document.getElementById('createAccountForm');
+    const infos = document.getElementById('accountInfos');
+    const displayName = document.getElementById('displayName');
+    const displayEmail = document.getElementById('displayEmail');
+    const displayPhone = document.getElementById('displayPhone');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('inputName').value;
+      const email = document.getElementById('inputEmail').value;
+      const phone = document.getElementById('inputPhone').value;
+      displayName.textContent = name;
+      displayEmail.textContent = email;
+      displayPhone.textContent = phone;
+      form.classList.add('hidden');
+      infos.classList.remove('hidden');
+    });
+    // Modifier mes infos (remet le formulaire)
+    document.getElementById('editBtn').onclick = function() {
+      form.classList.remove('hidden');
+      infos.classList.add('hidden');
+    };
+  </script>
+</body>
+</html> 
